@@ -17,7 +17,6 @@ const browse: RequestHandler = async (req, res, next) => {
 
 const edit: RequestHandler = async (req, res, next) => {
   try {
-  
     const category = {
       id: Number(req.params.id),
       name: req.body.name,
@@ -33,7 +32,6 @@ const edit: RequestHandler = async (req, res, next) => {
       res.sendStatus(204);
     }
   } catch (err) {
-    
     next(err);
   }
 };
