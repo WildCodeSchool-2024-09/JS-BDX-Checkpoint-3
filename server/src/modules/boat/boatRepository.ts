@@ -21,8 +21,25 @@ class BoatRepository {
   }
 
   async update(boatToUpdate: Partial<Boat>) {
-    // your code here
-    return 0;
+    try {
+      const [boatResult] = await databaseClient.query<Result>(
+        `
+        UPDATE boat
+        SET name = ?, coord_x = ?, coord_y = ?
+        WHERE id = ?
+        `,
+        [
+          boatToUpdate.name,
+          boatToUpdate.coord_x,
+          boatToUpdate.coord_y,
+          boatToUpdate.id,
+        ],
+      );
+
+      return boatResult.affectedRows;
+    } catch (error) {
+      throw new Error("Bateau non mis à jour");
+    }
   }
 }
 
