@@ -21,8 +21,20 @@ class BoatRepository {
   }
 
   async update(boatToUpdate: Partial<Boat>) {
-    // your code here
-    return 0;
+    try {
+      const [result] = await databaseClient.query<Result>(
+        `
+        UPDATE boat
+        SET coord_x = ?, coord_y = ?
+        WHERE id = ?
+      `,
+        [boatToUpdate.coord_x, boatToUpdate.coord_y, boatToUpdate.id],
+      );
+      return result.affectedRows;
+    } catch (err) {
+      console.error("Error updating contain with ID", boatToUpdate.id, err);
+      throw err;
+    }
   }
 }
 
