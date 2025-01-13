@@ -1,4 +1,3 @@
-import { tr } from "@faker-js/faker/.";
 import type { RequestHandler } from "express";
 import tileRepository from "./tileRepository";
 
