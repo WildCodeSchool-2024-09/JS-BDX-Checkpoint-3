@@ -13,6 +13,19 @@ const browse: RequestHandler = async (req, res, next) => {
 
 const validate: RequestHandler = async (req, res, next) => {
   // your code here
+  type ValidationError = {
+    coordx: number;
+    coordy: number;
+  };
+  const errors: ValidationError[] = [];
+
+  const { coord_x, coord_y } = req.body;
+
+  if (errors.length === 0) {
+    next();
+  } else {
+    res.status(400).json({ validationErrors: errors });
+  }
 };
 
 export default {
