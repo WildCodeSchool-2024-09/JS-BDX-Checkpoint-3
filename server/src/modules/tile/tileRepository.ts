@@ -14,7 +14,8 @@ class TileRepository {
   async readAll() {
     // Execute the SQL SELECT query to retrieve all tiles from the "tile" table
     const [rows] = await databaseClient.query<Rows>(
-      "select * from tile order by coord_y, coord_x",
+      `SELECT tile.type, tile.coord_x, tile.coord_y, has_treasure  FROM tile 
+      order by coord_y, coord_x`,
     );
 
     // Return the array of tiles
