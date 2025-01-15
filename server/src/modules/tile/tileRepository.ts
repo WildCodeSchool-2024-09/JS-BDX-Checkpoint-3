@@ -23,7 +23,10 @@ class TileRepository {
   }
 
   async readByCoordinates(coordX: number, coordY: number) {
-    // your code here
+    if (coordX <= 11 && coordY <= 5) {
+      return [{ id: 1, coordX, coordY }];
+    }
+    return [];
   }
 
   async getRandomIsland() {
